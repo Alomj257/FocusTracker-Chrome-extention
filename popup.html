@@ -1,0 +1,85 @@
+<!-- popup.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FocusArk</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>FocusArk</h1>
+      <div id="streak-counter">
+        Streak: <span id="streak-count">0</span>
+      </div>
+    </header>
+
+    <div id="timer-display">00:00:00</div>
+
+    <div class="main-controls">
+      <button 
+        id="toggle-focus" 
+        class="btn">
+        Start Focus Session
+      </button>
+
+      <button 
+        id="report-distraction" 
+        class="btn secondary"
+        disabled>
+        Report Distraction
+      </button>
+
+      <button 
+        id="view-insights" 
+        class="btn primary">
+        View Insights
+      </button>
+    </div>
+
+    <div id="session-summary" class="hidden">
+      <h2>Session Complete</h2>
+      <div class="summary-stats">
+        <div>
+          Duration: <span id="summary-duration">0</span>
+        </div>
+        <div>
+          Distractions: <span id="summary-distractions">0</span>
+        </div>
+      </div>
+
+      <!-- New Site Tracking Section -->
+      <div class="site-tracking-container">
+        <h3>Site Activity</h3>
+        <div id="site-tracking-summary" class="site-tracking">
+          <!-- Will be populated by JavaScript -->
+        </div>
+      </div>
+
+      <button 
+        id="new-session" 
+        class="btn primary">
+        Start New Session
+      </button>
+    </div>
+
+    <div class="debug-panel">
+      <button 
+        id="toggle-debug"
+        class="btn secondary">
+        Show Debug Data
+      </button>
+      
+      <div id="debug-data" class="debug-data hidden">
+        <div id="session-history">
+          <!-- Session history will be populated by JavaScript -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

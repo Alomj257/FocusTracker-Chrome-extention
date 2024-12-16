@@ -1,0 +1,458 @@
+:root {
+  --color-primary: #06C2D6;
+  --color-dark: #224550;
+  --color-darker: #17171E;
+  --color-gray: #3F4147;
+  --color-light: #F8F9F7;
+  --color-success: #4CAF50;
+  --color-danger: #F44336;
+  --color-disabled: #3F4147;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  width: 320px;
+  background-color: var(--color-darker);
+  color: var(--color-light);
+}
+
+.container {
+  padding: 16px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+h1 {
+  font-size: 24px;
+  color: var(--color-primary);
+}
+
+#timer-display {
+  font-size: 36px;
+  text-align: center;
+  margin: 24px 0;
+  font-weight: 600;
+  color: var(--color-light);
+  font-family: 'Roboto Mono', monospace;
+}
+
+/* Toggle Button Styles */
+#toggle-focus {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 12px;
+  transition: all 0.3s ease;
+  color: var(--color-darker);
+  background-color: var(--color-success);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+#toggle-focus:disabled {
+  background-color: var(--color-disabled);
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+#toggle-focus.active {
+  background-color: var(--color-danger);
+}
+
+#toggle-focus:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(6, 194, 214, 0.2);
+}
+
+#toggle-focus:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 8px;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn.primary {
+  background-color: var(--color-primary);
+  color: var(--color-darker);
+}
+
+.btn.secondary {
+  background-color: var(--color-gray);
+  color: var(--color-light);
+}
+
+/* Distraction Button */
+#report-distraction {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--color-gray);
+  color: var(--color-light);
+  border: 1px solid var(--color-primary);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 12px;
+  transition: all 0.2s ease;
+}
+
+#report-distraction:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: var(--color-gray);
+}
+
+#report-distraction:hover:not(:disabled) {
+  background-color: var(--color-dark);
+  border-color: var(--color-primary);
+}
+
+/* Session Summary */
+#session-summary {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-gray);
+}
+
+#session-summary h2 {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.summary-stats {
+  margin-bottom: 16px;
+  background-color: var(--color-gray);
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.summary-stats div {
+  margin-bottom: 8px;
+}
+
+.summary-stats div:last-child {
+  margin-bottom: 0;
+}
+
+/* Debug Panel */
+.debug-panel {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-gray);
+}
+
+.debug-data {
+  margin-top: 10px;
+  font-size: 12px;
+  background-color: var(--color-gray);
+  padding: 10px;
+  border-radius: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.debug-data h3 {
+  margin-bottom: 8px;
+  color: var(--color-primary);
+}
+
+.session-item {
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-dark);
+}
+
+.session-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+/* Insights Button */
+#view-insights {
+  background-color: var(--color-dark);
+  color: var(--color-light);
+  border: 1px solid var(--color-primary);
+}
+
+#view-insights:hover {
+  background-color: var(--color-gray);
+}
+
+.hidden {
+  display: none;
+}
+
+/* Animation for state changes */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+.pulse {
+  animation: pulse 0.5s ease-in-out;
+}
+
+/* New Site Tracking Section */
+.site-tracking-container {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.site-tracking-container h3 {
+  color: var(--color-primary);
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.site-tracking {
+  background: var(--color-gray);
+  padding: 12px;
+  border-radius: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.site-item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  margin-bottom: 8px;
+  background: var(--color-darker);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.site-item:last-child {
+  margin-bottom: 0;
+}
+
+.site-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: var(--color-primary);
+  opacity: 0.1;
+  z-index: 0;
+  transition: width 0.3s ease;
+}
+
+.site-name {
+  font-size: 14px;
+  color: var(--color-light);
+  z-index: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70%;
+}
+
+.site-time {
+  font-size: 14px;
+  color: var(--color-primary);
+  font-weight: 600;
+  z-index: 1;
+}
+
+/* Scrollbar styling for the tracking list */
+.site-tracking::-webkit-scrollbar {
+  width: 6px;
+}
+
+.site-tracking::-webkit-scrollbar-track {
+  background: var(--color-darker);
+  border-radius: 3px;
+}
+
+.site-tracking::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 3px;
+}
+
+/* Animation for new items */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.site-item {
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Add these styles at the end of your existing styles.css file */
+
+.site-tracking-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.site-tracking-header h3 {
+  color: var(--color-primary);
+  font-size: 14px;
+  margin: 0;
+}
+
+.site-tracking-count {
+  font-size: 12px;
+  color: var(--color-gray);
+}
+
+.site-tracking {
+  background: var(--color-gray);
+  padding: 12px;
+  border-radius: 6px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.site-item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  background: var(--color-darker);
+  border-radius: 4px;
+  overflow: hidden;
+  animation: slideIn 0.3s ease-out forwards;
+  opacity: 0;
+}
+
+.site-item:last-child {
+  margin-bottom: 0;
+}
+
+.site-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: var(--color-primary);
+  opacity: 0.1;
+  transition: width 0.3s ease;
+}
+
+.site-name {
+  font-size: 14px;
+  color: var(--color-light);
+  z-index: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70%;
+}
+
+.site-time {
+  font-size: 14px;
+  color: var(--color-primary);
+  font-weight: 600;
+  z-index: 1;
+}
+
+.site-tracking-empty,
+.site-tracking-error {
+  text-align: center;
+  padding: 24px;
+  color: var(--color-gray);
+  font-size: 14px;
+  background: var(--color-darker);
+  border-radius: 6px;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scrollbar styling */
+.site-tracking::-webkit-scrollbar {
+  width: 6px;
+}
+
+.site-tracking::-webkit-scrollbar-track {
+  background: var(--color-darker);
+  border-radius: 3px;
+}
+
+.site-tracking::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 3px;
+}
+
+.time-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.grid-cols-6 {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.opacity-40 {
+  opacity: 0.4;
+}
+
+.rounded-sm {
+  border-radius: 0.125rem;
+}
+
